@@ -10,8 +10,12 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@plasmohq/messaging": "^0.7.1",
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-label": "2.1.2",
     "@radix-ui/react-slot": "1.1.2",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-tooltip": "^1.2.7",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "lucide-react": "0.474.0",
@@ -36,7 +40,15 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*/*"
-    ]
+      "<all_urls>"
+    ],
+    "permissions": [
+      "storage",
+      "activeTab",
+      "contextMenus"
+    ],
+    "action": {
+      "default_title": "Clipit Extension"
+    }
   }
 }
