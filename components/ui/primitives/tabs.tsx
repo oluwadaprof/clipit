@@ -1,3 +1,4 @@
+import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import * as React from "react"
@@ -11,7 +12,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
+      "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground relative",
       className
     )}
     {...props}
@@ -26,14 +27,11 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap  px-3 py-1 text-sm font-normal  transition-all",
-      // Inactive state (default)
+      "inline-flex items-center justify-center whitespace-nowrap px-3 py-1 text-sm font-normal",
       "bg-transparent text-[#969696]",
-      // Active state
-      " data-[state=active]:bg-blue-500 data-[state=active]:text-white",
-      // Focus state
+      "relative transition-all duration-300 ease-in-out",
+      "data-[state=active]:text-white",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      // Disabled state
       "disabled:pointer-events-none disabled:opacity-50",
       className
     )}
@@ -57,4 +55,29 @@ const TabsContent = React.forwardRef<
 ))
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+// Add new ActiveTabIndicator component
+const ActiveTabIndicator = ({ value }: { value: string }) => {
+  const tabPositions = {
+    recents: 0,
+    text: 78,
+    images: 156
+  }
+
+  return (
+    <motion.div
+      className="absolute left-1 top-.5 h-7 w-[4.9rem] rounded-[6px] bg-blue-500"
+      initial={false}
+      animate={{
+        x: tabPositions[value as keyof typeof tabPositions]
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 30
+      }}
+    />
+  )
+}
+
+// Export the new component
+export { Tabs, TabsList, TabsTrigger, TabsContent, ActiveTabIndicator }

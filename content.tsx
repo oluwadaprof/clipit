@@ -15,6 +15,19 @@ export const config: PlasmoCSConfig = {
 }
 
 export const getStyle = () => {
+  // Add preconnect link
+  const preconnect = document.createElement("link")
+  preconnect.rel = "preconnect"
+  preconnect.href = "https://fonts.googleapis.com"
+  document.head.appendChild(preconnect)
+
+  const preconnect2 = document.createElement("link")
+  preconnect2.rel = "preconnect"
+  preconnect2.href = "https://fonts.gstatic.com"
+  preconnect2.crossOrigin = "anonymous"
+  document.head.appendChild(preconnect2)
+
+  // Add existing style
   const style = document.createElement("style")
   style.textContent = cssText
   return style
@@ -53,15 +66,15 @@ const PlasmoOverlay = () => {
 
   return (
     <Card
-      className={`fixed right-2 top-2 z-[9999] box-border flex h-[625px] w-[420px] flex-col rounded-2xl bg-white text-base shadow-2xl transition-transform duration-300 ${
+      className={`fixed right-2 top-2 z-[9999] box-border flex h-[625px] w-[510px] flex-col rounded-2xl bg-white text-base shadow-2xl transition-transform duration-300 ${
         !isVisible ? "translate-x-[520px]" : "translate-x-0"
       } overflow-hidden`}
       style={{ fontFamily: "system-ui, sans-serif" }}>
-      <TopBar />
-      <CardContent className="flex-1 overflow-auto">
+      <TopBar onClose={() => setIsVisible(false)} />
+      <CardContent className="flex-1 ">
         <Home />
       </CardContent>
-      <CardFooter className="mt-auto">
+      <CardFooter className="sticky bottom-0">
         <Footer />
       </CardFooter>
     </Card>

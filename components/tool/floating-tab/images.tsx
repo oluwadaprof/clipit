@@ -1,22 +1,53 @@
-import React from 'react'
-import { Box, Grid, VStack } from '~components/ui/layout'
+import React from "react"
+
+import ClipCard from "~components/clip-card"
+import { Box, Grid, VStack } from "~components/ui/layout"
+import { colors } from "~constants/styles"
 
 const ImagesClip = () => {
   return (
-   <VStack className="w-full gap-2">
-     <Grid className="w-full gap-2 grid-cols-2">
-      <Box className="w-full h-40 rounded-[10px] border border-[#E8E8E8] bg-[#F7F7F7]"/>
-      <Box className="w-full h-40 rounded-[10px] border border-[#E8E8E8] bg-[#F7F7F7]"/>
-    </Grid>
-    <Grid className="w-full gap-2 grid-cols-2">
-      <Box className="w-full h-40 rounded-[10px] border border-[#E8E8E8] bg-[#F7F7F7]"/>
-      <Box className="w-full h-40 rounded-[10px] border border-[#E8E8E8] bg-[#F7F7F7]"/>
-    </Grid> 
-    <Grid className="w-full gap-2 grid-cols-2"> 
-        <Box className="w-full h-40 rounded-[10px] border border-[#E8E8E8] bg-[#F7F7F7]"/>
-        <Box className="w-full h-40 rounded-[10px] border border-[#E8E8E8] bg-[#F7F7F7]"/>
-    </Grid>
-   </VStack>
+    <VStack className="w-full gap-2">
+      <Grid className="w-full grid-cols-2 gap-2">
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+      </Grid>
+      <Grid className="w-full grid-cols-2 gap-2">
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+      </Grid>
+      <Grid className="w-full grid-cols-2 gap-2">
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+      </Grid>
+      <Grid className="w-full grid-cols-2 gap-2">
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+        <Box
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard />
+        </Box>
+      </Grid>
+    </VStack>
   )
 }
 
