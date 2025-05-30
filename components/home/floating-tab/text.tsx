@@ -3,7 +3,8 @@ import { createSwapy, type Swapy } from "swapy"
 
 import { useClipStore } from "~/stores/clipStore"
 import ClipCard from "~components/clip-card"
-import { VStack } from "~components/ui/layout"
+import { Box, Grid } from "~components/ui/layout"
+import { colors } from "~constants/styles"
 
 const TextClip = () => {
   const { filteredClips, updateClipOrder } = useClipStore()
@@ -53,11 +54,18 @@ const TextClip = () => {
   }, [filteredClips.text, updateClipOrder])
 
   return (
-    <VStack ref={containerRef} className="w-full gap-2" data-swapy-container>
+    <Grid
+      ref={containerRef}
+      className="w-full grid-cols-2 gap-2 mb-28"
+      data-swapy-container>
       {filteredClips.text.map((clip) => (
-        <ClipCard key={clip.id} {...clip} />
+        <Box
+          key={clip.id}
+          className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
+          <ClipCard key={clip.id} {...clip} />
+        </Box>
       ))}
-    </VStack>
+    </Grid>
   )
 }
 

@@ -11,18 +11,18 @@ import {
 } from "~components/ui/primitives/tabs"
 import { borderRadius, colors } from "~constants/styles"
 
-import FloatingAction from "../floating-action/floating-action"
-import FloatingCounter from "../floating-action/floating-counter"
+import FloatingAction from "./floating-action"
+import FloatingCounter from "./floating-counter"
 import ImagesClip from "./images"
 import RecentClip from "./recent"
 import TextClip from "./text"
 
 const FloatingTab = () => {
-  const [action, setAction] = useState(false)
-  const [activeTab, setActiveTab] = useState("recents")
+  const [action, setAction] = useState<'pin' | 'delete' | null>(null)
+  const [activeTab, setActiveTab] = useState<'recents' | 'text' | 'images'>('recents')
 
-  const toggleAction = () => {
-    setAction(!action)
+  const handleAction = (actionType: 'pin' | 'delete') => {
+    setAction(action === actionType ? null : actionType)
   }
 
   return (
@@ -30,11 +30,11 @@ const FloatingTab = () => {
       <Tabs
         defaultValue="recents"
         value={activeTab}
-        onValueChange={setActiveTab}
+        onValueChange={(value: 'recents' | 'text' | 'images') => setActiveTab(value)}
         className="flex h-full w-full flex-col">
         <HStack className="sticky top-0 z-10 h-12 w-full justify-between bg-white">
           <AnimatePresence mode="wait">
-            {action ? (
+            {!action ? (
               <motion.div
                 key="tabs"
                 initial={{ scale: 0.95, opacity: 0 }}
@@ -46,7 +46,7 @@ const FloatingTab = () => {
                   damping: 25
                 }}>
                 <TabsList
-                  className={`rounded-[${borderRadius.large}] border border-[${colors.borderMuted}] bg-[#F7F7F7]`}>
+                  className={`rounded-[10px] border border-[${colors.borderMuted}] bg-[#F7F7F7]`}>
                   <ActiveTabIndicator value={activeTab} />
                   <TabsTrigger
                     className={`w-[4.9rem] rounded-[${borderRadius.medium}] data-[state=active]:text-white`}
@@ -77,16 +77,19 @@ const FloatingTab = () => {
                   damping: 25
                 }}
                 className="w-[18.7rem]">
-                <FloatingCounter />
+                <FloatingCounter activeAction={action} />
               </motion.div>
             )}
           </AnimatePresence>
 
           {/* Floating action bar */}
-          <FloatingAction onClick={toggleAction} />
+          <FloatingAction 
+            onClick={handleAction} 
+            activeTab={activeTab} 
+          />
         </HStack>
         <Box
-          className={`flex-1 overflow-y-auto rounded-[${borderRadius.large}]`}>
+          className={`flex-1 overflow-auto `}>
           <TabsContent value="recents">
             <RecentClip />
           </TabsContent>

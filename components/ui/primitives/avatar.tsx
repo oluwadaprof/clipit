@@ -1,7 +1,11 @@
 import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
-
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 import { cn } from "@/lib/utils"
+
+interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
+  tooltip?: string
+}
 
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
