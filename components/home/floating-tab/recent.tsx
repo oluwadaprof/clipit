@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react"
 
 import ClipCard from "~components/clip-card"
-import { Box, Grid } from "~components/ui/layout"
+import { Box, Grid } from "~components/ui/primitives/layout"
 import { colors } from "~constants/styles"
 import { createSwapy, type Swapy } from "swapy"
 import { useClipStore } from "~stores/clipStore"
 
-const RecentClip = () => {
+const RecentClip = ({ activeAction }: { activeAction: 'pin' | 'delete' | null }) => {
   const { clips, updateClipOrder } = useClipStore()
   const containerRef = useRef<HTMLDivElement>(null)
   const swapyRef = useRef<Swapy | null>(null)
@@ -63,7 +63,7 @@ const RecentClip = () => {
         <Box
           key={clip.id}
           className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
-          <ClipCard key={clip.id} {...clip} />
+          <ClipCard key={clip.id} {...clip}  />
         </Box>
       ))}
     </Grid>

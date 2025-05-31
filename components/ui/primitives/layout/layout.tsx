@@ -154,3 +154,27 @@ export const Container = forwardRef<HTMLDivElement, LayoutProps>(
   }
 )
 Container.displayName = "Container"
+
+// Divider
+interface DividerProps extends LayoutProps {
+  orientation?: "horizontal" | "vertical"
+}
+
+export const Divider = forwardRef<HTMLDivElement, DividerProps>(
+  ({ className, orientation = "horizontal", ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "bg-border",
+          orientation === "horizontal"
+            ? "h-[1px] w-full"
+            : "h-full w-[1px] min-h-[20px]",
+          className
+        )}
+        {...props}
+      />
+    )
+  }
+)
+Divider.displayName = "Divider"

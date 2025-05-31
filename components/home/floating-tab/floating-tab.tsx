@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from "motion/react"
 import React, { useState } from "react"
 
-import { Box, HStack } from "~components/ui/layout"
+
+import { Box, HStack } from "~components/ui/primitives/layout"
 import {
   ActiveTabIndicator,
   Tabs,
@@ -16,14 +17,13 @@ import FloatingCounter from "./floating-counter"
 import ImagesClip from "./images"
 import RecentClip from "./recent"
 import TextClip from "./text"
+import { useClipStore } from "~stores/clipStore"
 
 const FloatingTab = () => {
-  const [action, setAction] = useState<'pin' | 'delete' | null>(null)
+  const { selectedClips, clearSelection } = useClipStore()
   const [activeTab, setActiveTab] = useState<'recents' | 'text' | 'images'>('recents')
-
-  const handleAction = (actionType: 'pin' | 'delete') => {
-    setAction(action === actionType ? null : actionType)
-  }
+  
+  const hasSelectedItems = selectedClips.size > 0
 
   return (
     <Box className="mt-.5 flex h-[calc(100vh-120px)] w-full flex-col">
@@ -34,7 +34,7 @@ const FloatingTab = () => {
         className="flex h-full w-full flex-col">
         <HStack className="sticky top-0 z-10 h-12 w-full justify-between bg-white">
           <AnimatePresence mode="wait">
-            {!action ? (
+            {!hasSelectedItems ? (
               <motion.div
                 key="tabs"
                 initial={{ scale: 0.95, opacity: 0 }}
@@ -76,28 +76,28 @@ const FloatingTab = () => {
                   stiffness: 300,
                   damping: 25
                 }}
-                className="w-[18.7rem]">
-                <FloatingCounter activeAction={action} />
+                className="w-[25.7rem]">
+                <FloatingCounter activeTab={activeTab} onUnselectAll={clearSelection} />
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Floating action bar */}
-          <FloatingAction 
-            onClick={handleAction} 
-            activeTab={activeTab} 
-          />
+          {/* Floating action bar - only show when items are selected */}
+          {hasSelectedItems && (
+            <FloatingAction 
+              activeTab={activeTab}
+            />
+          )}
         </HStack>
-        <Box
-          className={`flex-1 overflow-auto `}>
+        <Box className={`flex-1 overflow-auto`}>
           <TabsContent value="recents">
-            <RecentClip />
+            <RecentClip activeAction={null} />
           </TabsContent>
           <TabsContent value="text">
-            <TextClip />
+            <TextClip activeAction={null} />
           </TabsContent>
           <TabsContent value="images">
-            <ImagesClip />
+            <ImagesClip activeAction={null} />
           </TabsContent>
         </Box>
       </Tabs>

@@ -17,6 +17,7 @@ interface ClipState {
   togglePin: (id: string) => void
   toggleSelect: (id: string) => void
   clearSelection: () => void
+  selectAll: (type: 'recents' | 'text' | 'images') => void
 }
 
 export const useClipStore = create<ClipState>((set, get) => ({
@@ -122,6 +123,18 @@ export const useClipStore = create<ClipState>((set, get) => ({
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         ).slice(0, 8)
       }
+    }
+  }),
+
+  selectAll: (type) => set(state => {
+    const clipsToSelect = type === 'recents' 
+      ? state.clips
+      : state.filteredClips[type === 'text' ? 'text' : 'image']
+    
+    const newSelectedClips = new Set(clipsToSelect.map(clip => clip.id))
+    return {
+      ...state,
+      selectedClips: newSelectedClips
     }
   })
 })) 

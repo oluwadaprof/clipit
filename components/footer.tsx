@@ -3,7 +3,7 @@ import tosinAvatar from "data-base64:~assets/tosin.png"
 import React, { useState } from "react"
 
 import { Icons } from "./ui/icons/base"
-import { Box, Flex, HStack } from "./ui/layout/layout"
+import { Box, Flex, HStack } from "./ui/primitives/layout/layout"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/primitives/avatar"
 import { Button } from "./ui/primitives/button"
 import { Text } from "./ui/primitives/text"
@@ -50,8 +50,8 @@ const Footer = () => {
         </Box>
       </HStack>
       <HStack className="gap-1">
-        <Icons.warningCircle size={22} className="text-gray-400" />
-        <Icons.settings size={22} className="text-gray-400" />
+        <Icons.warningCircle size={22} className="text-gray-400 hover:cursor-pointer hover:text-blue-500" />
+        <Icons.settings size={22} className="text-gray-400 hover:cursor-pointer hover:text-blue-500" />
       </HStack>
     </Flex>
   )

@@ -1,7 +1,7 @@
 import empty from "data-base64:~assets/empty-v2.png"
 import React from "react"
 
-import { Center, VStack } from "~components/ui/layout"
+import { Center, VStack } from "~components/ui/primitives/layout"
 import { Text } from "~components/ui/primitives/text"
 
 const NoClipboard = () => {

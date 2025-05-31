@@ -1,7 +1,7 @@
 import React from "react"
 import { useClipStore } from "~/stores/clipStore"
 import { Icons } from "./ui/icons/base"
-import { Box } from "./ui/layout"
+import { Box } from "./ui/primitives/layout"
 
 interface ClipCardProps {
   id: string
@@ -12,8 +12,13 @@ interface ClipCardProps {
 }
 
 const ClipCard = ({ id, content, type, isPinned, isDraggable = true }: ClipCardProps) => {
-  const { togglePin, toggleSelect, selectedClips } = useClipStore()
+  const { toggleSelect, selectedClips } = useClipStore()
   const isSelected = selectedClips.has(id)
+
+  const getBorderStyle = () => {
+    if (!isSelected) return 'border-transparent'
+    return 'border-green-500'
+  }
 
   return (
     <Box 
@@ -21,7 +26,7 @@ const ClipCard = ({ id, content, type, isPinned, isDraggable = true }: ClipCardP
       className={`relative w-full ${isSelected ? 'opacity-70' : ''}`}
       onClick={() => toggleSelect(id)}
     >
-      <Box className="flex h-32 w-full items-center justify-center rounded-[16px]">
+      <Box className={`flex h-32 w-full items-center justify-center hover:border-blue-500 hover:border-2 hover:cursor-pointer rounded-[16px] transition-colors duration-900 border-2 ${getBorderStyle()}`}>
         {isDraggable && (
           <Box data-swapy-handle className="cursor-grab">
             <Icons.goGrabber size={20} />
@@ -40,11 +45,7 @@ const ClipCard = ({ id, content, type, isPinned, isDraggable = true }: ClipCardP
           {isPinned && (
             <Icons.pin
               size={16}
-              className="absolute top-2 right-2 cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation()
-                togglePin(id)
-              }}
+              className="absolute top-2 text-blue-500 right-2"
             />
           )}
         </Box>

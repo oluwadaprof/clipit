@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '~components/ui/layout'
+import { Box } from '~components/ui/primitives/layout'
 import NoClipboard from './no-clipboard'
 import FloatingTab from '~components/home/floating-tab/floating-tab'
 

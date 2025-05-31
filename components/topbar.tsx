@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Flex, HStack } from './ui/layout/layout'
+import { Flex, HStack } from './ui/primitives/layout/layout'
 import logo from "data-base64:~assets/logo-v2.png"
 import { Icons } from './ui/icons/base'
 import { Input } from './ui/primitives/input'
@@ -32,21 +32,21 @@ const TopBar = ({ onClose }: { onClose: () => void }) => {
           <Icons.close 
             onClick={toggleSearch} 
             size={22} 
-            className="text-gray-400 hover:cursor-pointer
+            className="text-gray-400 hover:cursor-pointer hover:text-blue-500
               animate-in fade-in zoom-in duration-200" 
           />
         ) : (
           <Icons.search 
             onClick={toggleSearch} 
             size={22} 
-            className="text-gray-400 hover:cursor-pointer
+            className="text-gray-400 hover:cursor-pointer hover:text-blue-500
               animate-in fade-in zoom-in duration-200" 
           />
         )}
         <Icons.sidebar 
           onClick={onClose} 
           size={22} 
-          className="text-gray-400 hover:cursor-pointer" 
+          className="text-gray-400 hover:cursor-pointer hover:text-blue-500" 
         />
       </HStack>
     </Flex>

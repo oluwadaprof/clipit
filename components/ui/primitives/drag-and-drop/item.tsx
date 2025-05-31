@@ -1,4 +1,4 @@
-import { Box } from "~components/ui/layout"
+import { Box } from "~components/ui/primitives/layout"
 import React, { type ReactNode } from "react"
 
 type ItemProps = {

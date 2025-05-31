@@ -3,10 +3,10 @@ import { createSwapy, type Swapy } from "swapy"
 
 import { useClipStore } from "~/stores/clipStore"
 import ClipCard from "~components/clip-card"
-import { Box, Grid } from "~components/ui/layout"
+import { Box, Grid } from "~components/ui/primitives/layout"
 import { colors } from "~constants/styles"
 
-const TextClip = () => {
+const TextClip = ({ activeAction }: { activeAction: 'pin' | 'delete' | null }) => {
   const { filteredClips, updateClipOrder } = useClipStore()
   const containerRef = useRef<HTMLDivElement>(null)
   const swapyRef = useRef<Swapy | null>(null)
