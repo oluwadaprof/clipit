@@ -5,20 +5,20 @@ import React, { useState } from "react"
 import { Icons } from "./ui/icons/base"
 import { Box, Flex, HStack } from "./ui/primitives/layout/layout"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/primitives/avatar"
-import { Button } from "./ui/primitives/button"
-import { Text } from "./ui/primitives/text"
+import { useNavigationStore } from "~/stores/navigationStore"
 
 const Footer = () => {
   const [hoveredAvatar, setHoveredAvatar] = useState<"tosin" | "israel" | null>(
     null
   )
+  const setView = useNavigationStore(state => state.setView)
 
   return (
     <Flex className="h-12 w-full justify-between border-t border-gray-200 bg-gray-50 p-2">
       <HStack>
         <Box className="flex">
           <Avatar
-            className={`transition-all ${
+            className={`transition-all delay-75 hover:cursor-pointer ${
               hoveredAvatar === "israel"
                 ? "blur-[1px]"
                 : hoveredAvatar === "tosin"
@@ -33,7 +33,7 @@ const Footer = () => {
             </AvatarFallback>
           </Avatar>
           <Avatar
-            className={`-ml-3 transition-all ${
+            className={`-ml-3 transition-all delay-75 hover:cursor-pointer ${
               hoveredAvatar === "israel"
                 ? "z-10 translate-x-[14px]"
                 : hoveredAvatar === "tosin"
@@ -50,8 +50,16 @@ const Footer = () => {
         </Box>
       </HStack>
       <HStack className="gap-1">
-        <Icons.warningCircle size={22} className="text-gray-400 hover:cursor-pointer hover:text-blue-500" />
-        <Icons.settings size={22} className="text-gray-400 hover:cursor-pointer hover:text-blue-500" />
+        <Icons.warningCircle 
+          size={22} 
+          onClick={() => setView('info')}
+          className="text-gray-400 hover:cursor-pointer hover:text-blue-500" 
+        />
+        <Icons.settings 
+          size={22} 
+          onClick={() => setView('settings')}
+          className="text-gray-400 hover:cursor-pointer hover:text-blue-500" 
+        />
       </HStack>
     </Flex>
   )

@@ -8,6 +8,9 @@ import Footer from "~components/footer"
 import Home from "~components/home/home"
 import TopBar from "~components/topbar"
 import { Card, CardContent, CardFooter } from "~components/ui/primitives/card"
+import Settings from "~components/settings/settings"
+import { useNavigationStore } from "~/stores/navigationStore"
+import InfoPanel from "~components/info/info-panel"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
@@ -31,6 +34,19 @@ export const getStyle = () => {
   const style = document.createElement("style")
   style.textContent = cssText
   return style
+}
+
+const MainContent = () => {
+  const currentView = useNavigationStore(state => state.currentView)
+
+  switch (currentView) {
+    case 'settings':
+      return <Settings />
+    case 'info':
+      return <InfoPanel />
+    default:
+      return <Home />
+  }
 }
 
 const PlasmoOverlay = () => {
@@ -72,7 +88,7 @@ const PlasmoOverlay = () => {
       style={{ fontFamily: "system-ui, sans-serif" }}>
       <TopBar onClose={() => setIsVisible(false)} />
       <CardContent className="flex-1 ">
-        <Home />
+        <MainContent />
       </CardContent>
       <CardFooter className="sticky bottom-0">
         <Footer />
