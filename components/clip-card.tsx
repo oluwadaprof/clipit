@@ -17,7 +17,7 @@ const ClipCard = ({ id, content, type, isPinned, isDraggable = true }: ClipCardP
 
   const getBorderStyle = () => {
     if (!isSelected) return 'border-transparent'
-    return 'border-green-500'
+    return 'border-yellow-500'
   }
 
   return (

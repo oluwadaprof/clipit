@@ -12,6 +12,7 @@ const Footer = () => {
     null
   )
   const setView = useNavigationStore(state => state.setView)
+  const currentView = useNavigationStore(state => state.currentView)
 
   return (
     <Flex className="h-12 w-full justify-between border-t border-gray-200 bg-gray-50 p-2">
@@ -52,12 +53,12 @@ const Footer = () => {
       <HStack className="gap-1">
         <Icons.warningCircle 
           size={22} 
-          onClick={() => setView('info')}
+          onClick={() => currentView === 'info' ? setView('home') : setView('info')}
           className="text-gray-400 hover:cursor-pointer hover:text-blue-500" 
         />
         <Icons.settings 
           size={22} 
-          onClick={() => setView('settings')}
+          onClick={() => currentView === 'settings' ? setView('home') : setView('settings')}
           className="text-gray-400 hover:cursor-pointer hover:text-blue-500" 
         />
       </HStack>
