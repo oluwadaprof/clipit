@@ -10,6 +10,10 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@plasmohq/messaging": "^0.7.1",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-label": "2.1.2",
@@ -31,6 +35,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@thedutchcoder/postcss-rem-to-px": "^0.0.2",
     "@types/chrome": "0.0.258",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
@@ -53,6 +58,11 @@
     ],
     "action": {
       "default_title": "Clipit Extension"
+    },
+    "icons": {
+      "16": "../assets/logo-v2.png",
+      "48": "../assets/logo-v2.png",
+      "128": "../assets/logo-v2.png"
     }
   }
 }

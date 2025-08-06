@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { createSwapy, type Swapy } from "swapy"
 
 import { useClipStore } from "~/stores/clipStore"
-import ClipCard from "~components/clip-card"
+import ClipCardContainer from "~components/clip-card"
 import { Box, Grid, VStack } from "~components/ui/primitives/layout"
 import { colors } from "~constants/styles"
 
@@ -60,7 +60,7 @@ const ImagesClip = ({ activeAction }: { activeAction: 'pin' | 'delete' | null })
           <Box
             key={clip.id}
             className={`h-32 w-full rounded-[17px] border border-[${colors.borderMuted}] bg-[${colors.backgroundMuted}]`}>
-            <ClipCard key={clip.id} {...clip} />
+            <ClipCardContainer {...clip} />
           </Box>
         ))}
       </Grid>
